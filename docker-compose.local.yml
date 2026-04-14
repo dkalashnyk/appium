@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  wdio:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    environment:
+      - APPIUM_HOST=host.docker.internal # connects to Appium on your Windows host
+      - APPIUM_PORT=4723
+      - APP_PATH=/app/apps/your-app.apk
+    volumes:
+      - ./apps:/app/apps
+      - ./allure-results:/app/allure-results
+    command: npx wdio run config/wdio.android.config.ts

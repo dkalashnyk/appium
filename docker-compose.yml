@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  android-emulator:
+    image: budtmo/docker-android:emulator_13.0 # well-maintained image with KVM
+    privileged: true # required for KVM
+    devices:
+      - /dev/kvm # KVM passthrough
+    environment:
+      - EMULATOR_DEVICE=Samsung Galaxy S10
+      - WEB_VNC=false
+      - APPIUM=false # we run Appium separately
+    ports:
+      - "5554:5554"
+      - "5555:5555"
+    healthcheck:
+      test: ["CMD", "adb", "shell", "getprop", "sys.boot_completed"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 120s
+
+  appium:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      android-emulator:
+        condition: service_healthy
+    environment:
+      - ANDROID_HOST=android-emulator
+      - APPIUM_HOST=0.0.0.0
+      - APPIUM_PORT=4723
+    command: appium --address 0.0.0.0 --port 4723 --log-level info
+    ports:
+      - "4723:4723"
+
+  wdio:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - appium
+    environment:
+      - APPIUM_HOST=appium
+      - APPIUM_PORT=4723
+      - APP_PATH=/app/apps/your-app.apk
+    volumes:
+      - ./apps:/app/apps
+      - ./allure-results:/app/allure-results
+    command: npx wdio run config/wdio.android.config.ts

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "ignoreDeprecations": "5.0",
+    "strict": false,
+    "esModuleInterop": true,
+    "outDir": "./build",
+    "rootDir": "./",
+    "types": ["node", "@wdio/globals/types", "mocha"]
+  },
+  "include": ["src/**/*", "config/**/*", "tests/**/*"]
+}
