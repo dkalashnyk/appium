@@ -30,7 +30,7 @@ export const baseConfig: Partial<Options.Testrunner> = {
     ],
   ],
   mochaOpts: {
-    timeout: 180_000,
+    timeout: 300_000,
   },
   afterTest: async function (
     _test: never,

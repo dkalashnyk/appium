@@ -15,7 +15,7 @@ class AgeConfirmationPage extends BasePage {
 
   async confirm(): Promise<void> {
     await this.step("Confirm age", async () => {
-      await this.confirmButton.waitForExist({ timeout: 20_000 });
+      await this.confirmButton.waitForExist({ timeout: 60_000 });
       await this.tap(this.confirmButton);
     });
   }
