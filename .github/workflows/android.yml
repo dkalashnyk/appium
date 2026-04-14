@@ -91,11 +91,11 @@ jobs:
           name: junit-results
           path: junit-results/
 
-        - name: Publish test report
-          if: always()
-          uses: dorny/test-reporter@v1
-          with:
-            name: WDIO Test Results
-            path: junit-results/*.xml
-            reporter: java-junit
-            fail-on-error: false
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: WDIO Test Results
+          path: junit-results/*.xml
+          reporter: java-junit
+          fail-on-error: false
