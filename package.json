@@ -13,6 +13,7 @@
     "@wdio/spec-reporter": "^9.0.0",
     "allure-commandline": "^2.38.1",
     "allure-js-commons": "^3.7.1",
+    "appium": "^3.3.0",
     "dotenv": "^16.0.0",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0",
