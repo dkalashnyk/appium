@@ -6,9 +6,7 @@ class AgeConfirmationPage extends BasePage {
   }
 
   private get confirmButton() {
-    return $(
-      '//android.widget.TextView[@text="Підтверджую"] | //android.widget.TextView[@text="Confirm"]',
-    );
+    return $("//android.widget.Button");
   }
 
   private get title() {
