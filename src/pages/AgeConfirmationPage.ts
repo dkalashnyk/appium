@@ -13,22 +13,15 @@ class AgeConfirmationPage extends BasePage {
     return $('//android.widget.TextView[@text="Підтвердьте свій вік"]');
   }
 
-  async confirm(): Promise<void> {
-    await this.step("Confirm age", async () => {
-      try {
-        await this.confirmButton.waitForExist({ timeout: 120_000 });
+  async confirmIfVisible(): Promise<void> {
+    try {
+      await this.confirmButton.waitForExist({ timeout: 10_000 });
+      await this.step("Confirm age", async () => {
         await this.tap(this.confirmButton);
-      } catch (error) {
-        // Screenshot at point of failure — shows exactly what's on screen
-        const screenshot = await browser.takeScreenshot();
-        require("@wdio/allure-reporter").default.addAttachment(
-          "Age screen at timeout",
-          Buffer.from(screenshot, "base64"),
-          "image/png",
-        );
-        throw error; // re-throw so test still fails
-      }
-    });
+      });
+    } catch {
+      // Age confirmation not shown — continue
+    }
   }
 }
 

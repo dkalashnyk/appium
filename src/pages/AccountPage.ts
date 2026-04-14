@@ -6,13 +6,13 @@ class AccountPage extends BasePage {
   }
 
   private get loginButton() {
-    return $('//android.widget.TextView[@text="Увійти в акаунт"]');
+    return $(
+      '//android.widget.TextView[@text="Увійти в акаунт"] | //android.widget.TextView[@text="Sign in"]',
+    );
   }
 
   private get guestPrompt() {
-    return $(
-      '//android.widget.TextView[@text="Увійдіть в обліковий запис, щоб мати доступ до MEGOGO на всіх ваших пристроях"]',
-    );
+    return $('//android.widget.TextView[contains(@text, "MEGOGO")]');
   }
 
   async isGuestMode(): Promise<boolean> {

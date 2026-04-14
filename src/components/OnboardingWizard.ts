@@ -2,7 +2,7 @@ import { tap } from "../helpers/interactions";
 
 class OnboardingWizard {
   private get newUserButton() {
-    return $('//*[@text="Я новий користувач"]');
+    return $('//*[@text="Я новий користувач"] | //*[@text="I\'m a new user"]');
   }
 
   private get backButton() {
