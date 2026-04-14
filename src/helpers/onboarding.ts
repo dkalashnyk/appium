@@ -4,9 +4,9 @@ import AdOverlay from "../components/AdOverlay";
 import OnboardingWizard from "../components/OnboardingWizard";
 
 export async function completeOnboarding(): Promise<void> {
-  await browser.pause(5_000);
+  await browser.pause(15_000);
+  await browser.saveScreenshot("./allure-results/onboarding-start.png");
   await NotificationPermissionPage.skip();
-  await browser.saveScreenshot("./allure-results/age-confirmation-start.png");
   await AgeConfirmationPage.confirm();
   await OnboardingWizard.skipIfVisible();
   await AdOverlay.closeIfVisible();
