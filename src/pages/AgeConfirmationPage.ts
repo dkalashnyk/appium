@@ -6,7 +6,9 @@ class AgeConfirmationPage extends BasePage {
   }
 
   private get confirmButton() {
-    return $('//android.widget.TextView[@text="Підтверджую"]');
+    return $(
+      '//android.widget.TextView[@text="Підтверджую"] | //android.widget.TextView[@text="Confirm"]',
+    );
   }
 
   private get title() {
@@ -15,6 +17,7 @@ class AgeConfirmationPage extends BasePage {
 
   async confirm(): Promise<void> {
     await this.step("Confirm age", async () => {
+      await browser.saveScreenshot("./allure-results/age-screen.png");
       await this.confirmButton.waitForExist({ timeout: 90_000 });
       await this.tap(this.confirmButton);
     });
