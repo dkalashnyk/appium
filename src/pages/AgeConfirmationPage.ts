@@ -15,9 +15,19 @@ class AgeConfirmationPage extends BasePage {
 
   async confirm(): Promise<void> {
     await this.step("Confirm age", async () => {
-      await browser.saveScreenshot("./allure-results/age-screen.png");
-      await this.confirmButton.waitForExist({ timeout: 90_000 });
-      await this.tap(this.confirmButton);
+      try {
+        await this.confirmButton.waitForExist({ timeout: 120_000 });
+        await this.tap(this.confirmButton);
+      } catch (error) {
+        // Screenshot at point of failure — shows exactly what's on screen
+        const screenshot = await browser.takeScreenshot();
+        require("@wdio/allure-reporter").default.addAttachment(
+          "Age screen at timeout",
+          Buffer.from(screenshot, "base64"),
+          "image/png",
+        );
+        throw error; // re-throw so test still fails
+      }
     });
   }
 }

@@ -5,7 +5,6 @@ import OnboardingWizard from "../components/OnboardingWizard";
 
 export async function completeOnboarding(): Promise<void> {
   await NotificationPermissionPage.skip();
-  await browser.pause(15_000);
   await AgeConfirmationPage.confirm();
   await OnboardingWizard.skipIfVisible();
   await AdOverlay.closeIfVisible();
