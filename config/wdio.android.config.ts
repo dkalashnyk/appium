@@ -1,14 +1,24 @@
-import { baseConfig } from "./wdio.base.config.js";
-
-const appiumHost = process.env.APPIUM_HOST ?? "localhost";
-const appiumPort = Number(process.env.APPIUM_PORT ?? 4723);
+import { baseConfig } from "./wdio.base.config";
 
 export const config = {
   ...baseConfig,
 
-  hostname: appiumHost,
-  port: appiumPort,
+  hostname: process.env.APPIUM_HOST ?? "localhost",
+  port: Number(process.env.APPIUM_PORT ?? 4723),
   path: "/",
+
+  services: [
+    [
+      "appium",
+      {
+        args: {
+          port: 4723,
+          relaxedSecurity: true,
+        },
+        logFileName: "appium.log",
+      },
+    ],
+  ],
 
   capabilities: [
     {
