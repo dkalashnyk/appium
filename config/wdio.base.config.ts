@@ -1,4 +1,5 @@
 import type { Options } from "@wdio/types";
+import video from "wdio-video-reporter";
 import * as dotenv from "dotenv";
 import path from "path";
 dotenv.config();
@@ -12,6 +13,14 @@ export const baseConfig: Partial<Options.Testrunner> = {
   waitforInterval: 500,
   reporters: [
     "spec",
+    [
+      video,
+      {
+        saveAllVideos: false, // only save on failure
+        videoSlowdownMultiplier: 3, // slow down for readability
+        outputDir: "allure-results", // put videos alongside allure results
+      },
+    ],
     [
       "allure",
       {
