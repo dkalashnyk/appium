@@ -55,19 +55,13 @@ jobs:
           api-level: 33
           arch: x86_64
           profile: pixel_6
-          emulator-options: -no-window -no-audio -no-boot-anim
+          emulator-options: -no-window -no-audio -no-boot-anim -locale uk_UA
           script: |
             adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 3; done'
-            # Set locale to Ukrainian
-            adb shell am broadcast -a com.android.intent.action.SET_LOCALE --es com.android.intent.extra.LOCALE uk
-            # Disable animations to speed up UI
             adb shell settings put global window_animation_scale 0
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
             adb install-multiple apps/base.apk apps/split_config.x86_64.apk apps/split_config.xxhdpi.apk
-            # Launch app and wait longer for it to initialize
-            adb shell am start -n com.megogo.application/net.megogo.app.main.MainActivity
-            sleep 30
             npx wdio run config/wdio.android.config.ts
         env:
           APP_PACKAGE: com.megogo.application
