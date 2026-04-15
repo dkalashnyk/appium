@@ -15,6 +15,7 @@ class NotificationPermissionPage extends BasePage {
 
   async skip(): Promise<void> {
     await this.step("Skip notification permission", async () => {
+      await browser.saveScreenshot("./allure-results/notification-skip.png");
       await this.tap(this.skipButton);
     });
   }

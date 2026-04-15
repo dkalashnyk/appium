@@ -11,6 +11,7 @@ class HomePage extends BasePage {
   async waitForPage(): Promise<void> {
     await this.step("Wait for home page to be displayed", async () => {
       await this.pageIdentifier.waitForDisplayed({ timeout: 30_000 });
+      await browser.saveScreenshot("./allure-results/home.png");
     });
   }
 }
