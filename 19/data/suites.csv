@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1150","should show guest state on account screen","Unauthorized User opens the app","Wed Apr 15 11:02:46 UTC 2026","passed","Wed Apr 15 11:02:47 UTC 2026","","","",""
+"","781","should display all navigation tabs","Unauthorized User opens the app","Wed Apr 15 11:02:45 UTC 2026","passed","Wed Apr 15 11:02:46 UTC 2026","","","",""

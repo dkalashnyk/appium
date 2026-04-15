@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//*[@text=\"Я новий користувач\"] | //*[@text=\"I'm a new user\"] | //*[@text=\"New User\"]"
+}

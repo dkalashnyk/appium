@@ -1,0 +1,1 @@
+[{"uid":"a3f2630d999b8543","name":"should show guest state on account screen","time":{"start":1776250966575,"stop":1776250967725,"duration":1150},"status":"passed","severity":"normal"},{"uid":"74ebf728447008e8","name":"should display all navigation tabs","time":{"start":1776250965793,"stop":1776250966574,"duration":781},"status":"passed","severity":"normal"}]

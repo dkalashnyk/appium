@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//android.widget.Image[@text=\"Close button\"]"
+}

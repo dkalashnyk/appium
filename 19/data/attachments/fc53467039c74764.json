@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//android.widget.TextView[@text=\"Увійти в акаунт\"] | //android.widget.TextView[@text=\"Log in to Your Account\"]"
+}
